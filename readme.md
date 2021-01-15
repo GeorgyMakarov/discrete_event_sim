@@ -1,5 +1,7 @@
 ## Discrete event simulation in R
 
+### Executive summary
+
 Project shows how to use `simmer` package in R to simulate discrete events.
 Discrete events simulation is helpful in management of services and/or
 industrial manufacturing companies with serial production process. This
@@ -11,4 +13,14 @@ can help in taking data driven decisions. It is roughly based on:
 - [Stat Pharm video] (https://www.youtube.com/watch?v=Qe1NvHJcmZs&t=4s)  
 - [Simmer docs] (https://r-simmer.org)  
 
+Second part of the project shows an abstract example of *DES* for a simple
+queuing process of customers. This part's purpose is to give you an idea of
+how you could organize your processes using data.
 
+Third part of the project is a practical implementation of *DES* to a real
+world sawmill process. The core idea of this part is to show how to deal
+with obstacles that may arise during process improvement.
+
+### Why even use discrete event simulation
+
+*Discrete events simulation (hereinafter DES)* -- 
