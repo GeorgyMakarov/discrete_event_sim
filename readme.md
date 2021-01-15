@@ -19,9 +19,14 @@ how you could organize your processes using data.
 
 Third part of the project is a practical implementation of *DES* to a real
 world sawmill process. The core idea of this part is to show how to deal
-with obstacles that may arise during process improvement.
+with obstacles that may arise during process improvement.The outcome of the
+third part is a data product:
+
+- [Sawmill DES]  
 
 Connect with me:
+
+[<img align="left" alt="GeorgyMakarov | LinkedIn" width="22px" src="https://cdn.jsdelivr.net/npm/simple-icons@v3/icons/linkedin.svg"/>][Linkedin]
 
 Languages and tools used in this project:
 
@@ -37,3 +42,6 @@ Languages and tools used in this project:
 
 [Stat Pharm video]: https://www.youtube.com/watch?v=Qe1NvHJcmZs&t=4s  
 [Simmer docs]: https://r-simmer.org
+[Sawmill DES]: https://rpubs.com/georgy_makarov/647960  
+[Linkedin]: https://www.linkedin.com/in/georgy-makarov-11436b42/  
+[
