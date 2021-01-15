@@ -35,5 +35,5 @@ Languages and tools used in this project:
 <br />
 <br />
 
-[Stat Pharm video]: https://www.youtube.com/watch?v=Qe1NvHJcmZs&t=4s
-[Simmer docs]: (https://r-simmer.org)
+[Stat Pharm video]: https://www.youtube.com/watch?v=Qe1NvHJcmZs&t=4s  
+[Simmer docs]: https://r-simmer.org
