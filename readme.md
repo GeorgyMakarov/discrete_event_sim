@@ -3,7 +3,7 @@
 ### Executive summary
 
 Project shows how to use `simmer` package in R to simulate discrete events.
-Discrete events simulation is helpful in management of services and/or
+Discrete event simulation is helpful in management of services and/or
 industrial manufacturing companies with serial production process. This
 project consists of **3** parts.
 
@@ -38,9 +38,22 @@ Languages and tools used in this project:
 
 <br />
 
+
 ### Why even use discrete event simulation
 
-*Discrete events simulation (hereinafter DES)* -- 
+*Discrete events simulation (hereinafter DES)* is a model, which reproduces
+the operation of a system as a discrete sequence of events in time. Each
+event occurs at a particular instant in time and marks a change of state in
+the system. In *DES* a system is described by time delay between changes
+of state in the system.
+
+*DES* contains **5** elements:  
+
+	- entity 	 -- an object that can interact with other objects;  
+	- attributes -- features describing an entity: age, gender etc.;  
+	- resource 	 -- 
+
+
 
 
 <br />
