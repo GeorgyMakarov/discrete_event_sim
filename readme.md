@@ -27,7 +27,6 @@ third part is a data product:
 Connect with me:
 
 [<img align="left" alt="GeorgyMakarov | LinkedIn" width="22px" src="https://cdn.jsdelivr.net/npm/simple-icons@v3/icons/linkedin.svg"/>][Linkedin]  
-[<img align="left" alt="GeorgyMakarov | Gmail" width="22px" src="https://cdn.jsdelivr.net/npm/simple-icons@v3/icons/gmail.svg"/>][Gmail]  
 
 <br />
 
@@ -51,7 +50,6 @@ Languages and tools used in this project:
 [Simmer docs]: https://r-simmer.org
 [Sawmill DES]: https://rpubs.com/georgy_makarov/647960  
 [Linkedin]: https://www.linkedin.com/in/georgy-makarov-11436b42/  
-[Gmail]: https://www.linkedin.com/in/georgy-makarov-11436b42/ 
 [Rstudio]: https://rstudio.com
 [Github]: https://github.com  
 [Git]: https://git-scm.com  
