@@ -52,7 +52,8 @@ of state in the system.
 * entity -- an object that can interact with other objects;  
 * attributes -- descriptors an entity: age, gender etc.;  
 * resource -- a process that serves an entity in some way;  
-* 
+* queues -- a list of entities waiting if a resource is busy;  
+
 
 *Capacity of resource* is the number of entities a resource can serve
 simultaneously. Imagine a doctor and a patient -- in this system the patient
@@ -61,6 +62,15 @@ patient at a time -- this means that resource capacity is **one**.
 
 *Resource utilization* is a result from division of *busy time* by 
 *total time* for a given resource. 
+
+*Queue logic* describes an order in which entities leave a queue. An order
+is similar to bookkeeping methods of **FIFO**, **LIFO**, **HVF**:  
+
+* FIFO -- first in queue leaves first;  
+* LIFO -- first in queue leaves last;  
+* HVF -- most expensive leaves first;  
+
+
 
 
 <br />
