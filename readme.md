@@ -49,11 +49,18 @@ of state in the system.
 
 *DES* contains **5** elements:  
 
-	- entity 	 -- an object that can interact with other objects;  
-	- attributes -- features describing an entity: age, gender etc.;  
-	- resource 	 -- 
+* entity -- an object that can interact with other objects;  
+* attributes -- descriptors an entity: age, gender etc.;  
+* resource -- a process that serves an entity in some way;  
+* 
 
+*Capacity of resource* is the number of entities a resource can serve
+simultaneously. Imagine a doctor and a patient -- in this system the patient
+is the entity and the doctor is the resource. A doctor can serve **1**
+patient at a time -- this means that resource capacity is **one**.
 
+*Resource utilization* is a result from division of *busy time* by 
+*total time* for a given resource. 
 
 
 <br />
