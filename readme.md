@@ -53,6 +53,7 @@ of state in the system.
 * attributes -- descriptors an entity: age, gender etc.;  
 * resource -- a process that serves an entity in some way;  
 * queues -- a list of entities waiting if a resource is busy;  
+* event -- any change to the system;  
 
 
 *Capacity of resource* is the number of entities a resource can serve
@@ -69,6 +70,15 @@ is similar to bookkeeping methods of **FIFO**, **LIFO**, **HVF**:
 * FIFO -- first in queue leaves first;  
 * LIFO -- first in queue leaves last;  
 * HVF -- most expensive leaves first;  
+
+Examples of *events*: create entity, entities interact, entity leaves the
+system.
+
+Why use *DES*:  
+
+- [x] it is flexible to many applications;  
+- [x] it is computationally efficient;  
+- [x] it is helpful to avoid micromanagement in models;  
 
 
 
