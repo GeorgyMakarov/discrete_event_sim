@@ -33,7 +33,7 @@ Connect with me:
 
 Languages and tools used in this project:
 
-[<img align="left" alt="GeorgyMakarov | Rstudio" width="22px" src="https://cdn.jsdelivr.net/npm/simple-icons@v3/icons/linkedin.svg"/>][Rstudio]  
+[<img align="left" alt="GeorgyMakarov | Rstudio" width="22px" src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/RStudio_logo_flat.svg/512px-RStudio_logo_flat.svg.png"/>][Rstudio]  
 [<img align="left" alt="GeorgyMakarov | Github" width="22px" src="https://cdn.jsdelivr.net/npm/simple-icons@v3/icons/github.svg"/>][Github]  
 [<img align="left" alt="GeorgyMakarov | Git" width="22px" src="https://cdn.jsdelivr.net/npm/simple-icons@v3/icons/git.svg"/>][Git]  
 
@@ -52,6 +52,7 @@ Languages and tools used in this project:
 [Sawmill DES]: https://rpubs.com/georgy_makarov/647960  
 [Linkedin]: https://www.linkedin.com/in/georgy-makarov-11436b42/  
 [Gmail]: https://www.linkedin.com/in/georgy-makarov-11436b42/ 
+[Rstudio]: https://rstudio.com
 [Github]: https://github.com  
 [Git]: https://git-scm.com  
 
