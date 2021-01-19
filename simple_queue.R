@@ -44,6 +44,7 @@ plot(env,
      c("nurse", "doctor", "administration"),
      items  = c("server", "queue"))
 
+# Plot metric of interest
 plot(env,
      what   = "arrivals",
      metric = "waiting_time")
