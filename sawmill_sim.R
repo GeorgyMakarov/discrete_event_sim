@@ -19,16 +19,16 @@ rands   = 3    # random seed
 ncycles = 1e6  # number of observations
 multip  = 10   # multiplier which converts distribution to minutes
 
-f.dpl(rands, ncycles, 7, 40, multip)        # process time
-f.dpl(rands, ncycles, 20, 2, multip * 60)  # time to failure
-f.dpl(rands, ncycles, 30, 30, multip * 10)  # repair time
-f.dpl(rands, ncycles, 10, 30, multip * 10)  # other jobs
+f.dpl(rands, ncycles, 7, 40, multip)         # process time
+f.dpl(rands, ncycles, 10, 10, multip * 60)   # time to failure
+f.dpl(rands, ncycles, 30, 30, multip * 10)   # repair time
+f.dpl(rands, ncycles, 10, 30, multip * 10)   # other jobs
 
 
 # Generate distributions for process time, time to failure, repair time, other
 # repair jobs duration. All distributions in minutes.
 ptd = f.dgn(rands, ncycles, 7, 40, multip)
-tfd = f.dgn(rands, ncycles, 20, 2, multip * 60)
+tfd = f.dgn(rands, ncycles, 10, 10, multip * 60)
 rtd = f.dgn(rands, ncycles, 30, 30, multip * 10)
 ojd = f.dgn(rands, ncycles, 10, 30, multip * 10)
 
