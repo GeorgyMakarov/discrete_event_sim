@@ -3,6 +3,7 @@ suppressPackageStartupMessages(library(shiny))
 suppressPackageStartupMessages(library(dplyr))
 suppressPackageStartupMessages(library(waiter))
 suppressPackageStartupMessages(library(shinythemes))
+suppressPackageStartupMessages(library(shinyWidgets))
 
 
 rm(list = ls())
