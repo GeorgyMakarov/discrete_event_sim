@@ -116,3 +116,8 @@ env %>%
 res = aggregate(value ~ name, get_mon_attributes(env), max)
 barplot(res$value)
 res
+
+
+# to do: visualize simulation output
+# to do: design data product
+# to do: publish description in .Rmd
