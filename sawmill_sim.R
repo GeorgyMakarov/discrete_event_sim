@@ -7,8 +7,8 @@
 # Load libraries
 # Load custom functions
 rm(list = ls())
-library(simmer)
 library(dplyr)
+library(simmer)
 setwd("/home/daria/Documents/projects/discrete_event_sim/")
 source("distr_generator.R")
 
@@ -19,10 +19,10 @@ rands   = 3    # random seed
 ncycles = 1e6  # number of observations
 multip  = 10   # multiplier which converts distribution to minutes
 
-f.dpl(rands, ncycles, 7, 40, multip)       # process time
+f.dpl(rands, ncycles, 7, 40, multip)        # process time
 f.dpl(rands, ncycles, 20, 2, multip * 60)  # time to failure
-f.dpl(rands, ncycles, 30, 30, multip * 10) # repair time
-f.dpl(rands, ncycles, 10, 30, multip * 10) # other jobs
+f.dpl(rands, ncycles, 30, 30, multip * 10)  # repair time
+f.dpl(rands, ncycles, 10, 30, multip * 10)  # other jobs
 
 
 # Generate distributions for process time, time to failure, repair time, other
@@ -71,8 +71,48 @@ other_jobs =
   rollback(1, Inf)
 
 
+# Failures happen randomly. Each failure seizes and calls for the repairman.
+# After the repairman has the saw running again, both resources are free
+# and begin where the left.
+saws = paste0("saw", 1:n_saws - 1)
+
+failure =
+  trajectory() %>%
+  select(saws, policy = "random") %>% 
+  seize_selected(1) %>% 
+  seize("repairman", 1) %>% 
+  timeout(rt_mean) %>% 
+  release("repairman", 1) %>% 
+  release_selected(1)
 
 
+# Append saws and workers to the simulation environment. Each saw has space
+# for one worker and no space in queue
+for (i in saws) {
+  env %>% 
+    add_resource(i, 1, 0, preemptive = TRUE) %>% 
+    add_generator(paste0(i, "_worker"), f.saw_logs(i), at(0), mon = 2)
+}
 
 
+# Append repairman to the simulation environment. He has an infinite queue as
+# at any given time any saw can break.
+env %>% 
+  add_resource("repairman", 1, Inf, preemptive = TRUE) %>% 
+  add_generator("repairman_worker", other_jobs, at(0)) %>% 
+  invisible
 
+
+# Define failure generator
+env %>% 
+  add_generator("failure",
+                failure,
+                function() rexp(1, tf_exp * n_saws),
+                priority = 1) %>% 
+  run(fc_dur) %>% invisible
+
+
+# Get results
+res = aggregate(value ~ name, get_mon_attributes(env), max)
+barplot(res$value)
+res
