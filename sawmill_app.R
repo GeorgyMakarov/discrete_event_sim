@@ -1,4 +1,4 @@
-setwd("/home/daria/Documents/projects/discrete_event_sim/")
+setwd("/home/georgy/Документы/GitHub/discrete_event_sim/")
 suppressPackageStartupMessages(library(shiny))
 suppressPackageStartupMessages(library(dplyr))
 suppressPackageStartupMessages(library(waiter))
@@ -42,6 +42,9 @@ ui = fluidPage(
 )
 
 
-server = function(input, output, session) {}
+server = function(input, output, session) {
+    mydata = sawmoduleServer("sawn")
+    print(mydata)
+}
 
 shinyApp(ui, server)

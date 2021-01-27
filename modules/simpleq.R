@@ -23,13 +23,20 @@ simplemoduleUI = function(id){
                     step  = 1),
         actionButton(ns("run"),
                      label = "Run",
-                     style = "color:#fff; background-color:#e95420 "),
-        br(),
-        br(),
-        actionButton(ns("clear"),
-                     label = "Clear")
+                     style = "color:#fff; background-color:#e95420 ")
     )
 }
 
 
-simplemoduleServer = function(id){}
+simplemoduleServer = function(id){
+    moduleServer(
+        id,
+        function(input, output, session){
+            observeEvent(input$run,{
+                nurses  = reactive({input$nurse})
+                doctors = reactove({input$doctor})
+                admins  = reactive({input$admin})
+            })
+        }
+    )
+}
