@@ -33,7 +33,14 @@ ui = fluidPage(
                          sawmoduleUI("sawn")
                      ),
                      mainPanel(
-                         plotOutput("sawnplot")
+                         fluidRow(
+                             column(6, plotOutput("process_t")),
+                             column(6, plotOutput("tofail_t"))
+                         ),
+                         fluidRow(
+                             column(6, plotOutput("repair_t")),
+                             column(6, plotOutput("sawn_vol"))
+                         )
                      )
                  )),
         tabPanel("About",
@@ -43,8 +50,54 @@ ui = fluidPage(
 
 
 server = function(input, output, session) {
-    mydata = sawmoduleServer("sawn")
-    print(mydata)
+    #mydata = sawmoduleServer("sawn")
+    #print(mydata)
+    xp = rnorm(1e3, 100, 10)
+    ep = rnorm(1e3, 10, 8)
+    output$process_t = renderPlot({
+        plot(x     = xp,
+             y     = 20 + 0.5 * xp + ep,
+             col   = "lightgreen",
+             frame = F,
+             pch   = 19)
+        points(x   = xp,
+               y   = 20 + 0.5 * xp + ep,
+               col = "black",
+               pch = 21)
+    })
+    output$tofail_t  = renderPlot({
+            plot(x     = 1:1000,
+                 y     = 20 + 0.2 * xp + ep * 2,
+                 col   = "lightgreen",
+                 frame = F,
+                 pch   = 19)
+            points(x   = 1:1000,
+                   y   = 20 + 0.2 * xp + ep * 2,
+                   col = "black",
+                   pch = 21)
+    })
+    output$repair_t  = renderPlot({
+        plot(x     = xp,
+             y     = log(xp),
+             col   = "lightgreen",
+             frame = F,
+             pch   = 19)
+        points(x   = xp,
+               y   = log(xp),
+               col = "black",
+               pch = 21)
+    })
+    output$sawn_vol  = renderPlot({
+        plot(x     = xp,
+             y     = log(xp),
+             col   = "grey",
+             frame = F,
+             pch   = 19)
+        points(x   = xp,
+               y   = log(xp),
+               col = "black",
+               pch = 21)
+    })
 }
 
 shinyApp(ui, server)
