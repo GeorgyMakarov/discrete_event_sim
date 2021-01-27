@@ -12,9 +12,19 @@
 
 f.dpl = function(rd, nb, s1, s2, mf) {
     set.seed(rd)
-    d  = density(rbeta(n = nb, shape1 = s1, shape2 = s2) * mf)
-    p1 = plot(d, main = "density plot", frame = F, col = "darkgreen")
-    p2 = polygon(d, col = rgb(0, 1, 0, alpha = 0.5))
+    x  = rbeta(n = nb, shape1 = s1, shape2 = s2) * mf
+    d  = density(x)
+    m  = median(x)
+    p1 = plot(d, 
+              main = paste("median value:", round(m, 2)), 
+              frame = F, 
+              col = "darkgreen")
+    p2 = polygon(d, 
+                 col = rgb(0, 1, 0, alpha = 0.5))
+    p3 = abline(v = m, 
+                col = "red", 
+                lty = 2,
+                lwd = 2)
 }
 
 
