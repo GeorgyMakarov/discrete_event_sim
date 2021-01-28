@@ -1,4 +1,5 @@
-setwd("/home/georgy/Документы/GitHub/discrete_event_sim/")
+#setwd("/home/georgy/Документы/GitHub/discrete_event_sim/")
+setwd("/home/daria/Documents/projects/discrete_event_sim/")
 suppressPackageStartupMessages(library(shiny))
 suppressPackageStartupMessages(library(dplyr))
 suppressPackageStartupMessages(library(waiter))
@@ -50,54 +51,7 @@ ui = fluidPage(
 
 
 server = function(input, output, session) {
-    #mydata = sawmoduleServer("sawn")
-    #print(mydata)
-    xp = rnorm(1e3, 100, 10)
-    ep = rnorm(1e3, 10, 8)
-    output$process_t = renderPlot({
-        plot(x     = xp,
-             y     = 20 + 0.5 * xp + ep,
-             col   = "lightgreen",
-             frame = F,
-             pch   = 19)
-        points(x   = xp,
-               y   = 20 + 0.5 * xp + ep,
-               col = "black",
-               pch = 21)
-    })
-    output$tofail_t  = renderPlot({
-            plot(x     = 1:1000,
-                 y     = 20 + 0.2 * xp + ep * 2,
-                 col   = "lightgreen",
-                 frame = F,
-                 pch   = 19)
-            points(x   = 1:1000,
-                   y   = 20 + 0.2 * xp + ep * 2,
-                   col = "black",
-                   pch = 21)
-    })
-    output$repair_t  = renderPlot({
-        plot(x     = xp,
-             y     = log(xp),
-             col   = "lightgreen",
-             frame = F,
-             pch   = 19)
-        points(x   = xp,
-               y   = log(xp),
-               col = "black",
-               pch = 21)
-    })
-    output$sawn_vol  = renderPlot({
-        plot(x     = xp,
-             y     = log(xp),
-             col   = "grey",
-             frame = F,
-             pch   = 19)
-        points(x   = xp,
-               y   = log(xp),
-               col = "black",
-               pch = 21)
-    })
+    mydata = sawmoduleServer("sawn")
 }
 
 shinyApp(ui, server)
