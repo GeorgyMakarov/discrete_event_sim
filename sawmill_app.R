@@ -1,10 +1,11 @@
-#setwd("/home/georgy/Документы/GitHub/discrete_event_sim/")
-setwd("/home/daria/Documents/projects/discrete_event_sim/")
+setwd("/home/georgy/Документы/GitHub/discrete_event_sim/")
+#setwd("/home/daria/Documents/projects/discrete_event_sim/")
 suppressPackageStartupMessages(library(shiny))
 suppressPackageStartupMessages(library(dplyr))
 suppressPackageStartupMessages(library(waiter))
 suppressPackageStartupMessages(library(shinythemes))
 suppressPackageStartupMessages(library(shinyWidgets))
+#suppressPackageStartupMessages(library(rsimmer))
 
 
 rm(list = ls())
@@ -51,7 +52,7 @@ ui = fluidPage(
 
 
 server = function(input, output, session) {
-    mydata = sawmoduleServer("sawn")
+    sawmoduleServer("sawn")
 }
 
 shinyApp(ui, server)
