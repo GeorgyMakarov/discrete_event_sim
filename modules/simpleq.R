@@ -83,13 +83,22 @@ simple_module_server = function(id){
                 env %>% run(until = 540)
                 
                 ## return monitored resources
-                df = env %>% get_mon_resources()
-                df = df %>% dplyr::select(time, queue)
+                df = env %>% get_mon_arrivals()
+                df = df %>% dplyr::select(end_time, start_time)
                 return(df)
             })
             
-            output$plot1 = renderPlot({plot(x = vals_df()$time,
-                                            y = vals_df()$queue)})
+            
+            # TO DO -- fix plot
+            output$plot1 = renderPlot({plot(x = vals_df()$end_time,
+                                            y = vals_df()$start_time,
+                                            main = "Waiting time evolution",
+                                            xlab = "simulation time",
+                                            ylab = "waiting time",
+                                            type = "l",
+                                            col  = "blue",
+                                            lwd  = 2,
+                                            frame = F)})
         }
     )
 }

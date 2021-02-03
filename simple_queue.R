@@ -28,8 +28,8 @@ patient = trajectory("patient_path") %>%
 # Add resources to the model
 # Add generator of arriving patients
 env %>% 
-  add_resource("nurse", 2) %>% 
-  add_resource("doctor", 2) %>% 
+  add_resource("nurse", 3) %>% 
+  add_resource("doctor", 4) %>% 
   add_resource("administration", 1) %>% 
   add_generator("patient", patient, function() rnorm(1, 5, 0.5))
 
@@ -50,5 +50,15 @@ plot(env,
      metric = "waiting_time")
 
 
-df = env %>% get_mon_resources()
+# Plot with basic plotting system
+arrivals = get_mon_arrivals(env)
+plot(x    = arrivals$end_time,
+     y    = arrivals$start_time,
+     main = "Waiting time evolution",
+     xlab = "simulation time",
+     ylab = "waiting time",
+     type = "l",
+     col  = "blue",
+     lwd  = 2,
+     frame = F)
 
