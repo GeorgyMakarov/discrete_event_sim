@@ -15,44 +15,26 @@ source("./modules/sawnmod.R")
 
 
 ui = fluidPage(
+    use_waiter(),
     theme = shinytheme("united"),
+    titlePanel("Discrete Event Simulation"),
     navbarPage(
-        "Discrete event simulator",
+        title = "Options",
         tabPanel("Simple queue",
                  br(),
-                 sidebarLayout(
-                     sidebarPanel(
-                         simplemoduleUI("simpleq")
-                     ),
-                     mainPanel(
-                         plotOutput("simpleqplot")
-                     )
-                 )),
+                 simple_module_ui("simple")),
         tabPanel("Sawmill sim",
                  br(),
-                 sidebarLayout(
-                     sidebarPanel(
-                         sawmoduleUI("sawn")
-                     ),
-                     mainPanel(
-                         fluidRow(
-                             column(6, plotOutput("process_t")),
-                             column(6, plotOutput("tofail_t"))
-                         ),
-                         fluidRow(
-                             column(6, plotOutput("repair_t")),
-                             column(6, plotOutput("sawn_vol"))
-                         )
-                     )
-                 )),
+                 saw_module_ui("sawmill")),
         tabPanel("About",
                  br())
     )
+
 )
 
 
-server = function(input, output, session) {
-    sawmoduleServer("sawn")
+server = function(input, output, session){
+    simple_module_server("simple")
 }
 
-shinyApp(ui, server)
+shinyApp(ui = ui, server = server)
