@@ -1,3 +1,8 @@
+# Module demonstrates simple queue simulation
+
+env = simmer("outpatient_clinic")
+
+# Module UI
 simple_module_ui = function(id){
     ns = NS(id)
     fluidPage(
@@ -38,7 +43,7 @@ simple_module_ui = function(id){
 }
 
 
-
+# Module server logic
 simple_module_server = function(id){
     moduleServer(
         id,
@@ -50,13 +55,42 @@ simple_module_server = function(id){
                 doct  = reactive({input$doctors})
                 admin = reactive({input$admins})
                 
-                ## 
+                ## define environment
+                if (exists(env) == T) {rm(env, patient)}
+                env = simmer("outpatient_clinic")
                 
+                ## define trajectory and interactions -- how patient is served
+                patient = trajectory("patient_path") %>% 
+                    seize("nurse", 1) %>% 
+                    timeout(function() rnorm(1, 15)) %>% 
+                    release("nurse", 1) %>% 
+                    
+                    seize("doctor", 1) %>% 
+                    timeout(function() rnorm(1, 20)) %>% 
+                    release("doctor", 1) %>% 
+                    
+                    seize("administration", 1) %>% 
+                    timeout(function() rnorm(1, 5)) %>% 
+                    release("administration", 1)
                 
+                ## add resources -- use reactive values from sliders
+                env %>% 
+                    add_resource("nurse", nurse()) %>% 
+                    add_resource("doctor", doct()) %>% 
+                    add_resource("administration", admin()) %>% 
+                    add_generator("patient", patient, function() rnorm(1, 5, 0.5))
+                
+                ## run simulation for 540 mins
+                env %>% run(until = 540)
+                
+                ## return monitored resources
+                df = env %>% get_mon_resources()
+                df = df %>% select(time, queue)
                 return(df)
             })
             
-            
+            output$plot1 = renderPlot({plot(x = vals_df()$time,
+                                            y = vals_df()$queue)})
         }
     )
 }
