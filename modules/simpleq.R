@@ -1,6 +1,5 @@
 # Module demonstrates simple queue simulation
 
-env = simmer("outpatient_clinic")
 
 # Module UI
 simple_module_ui = function(id){
@@ -56,7 +55,7 @@ simple_module_server = function(id){
                 admin = reactive({input$admins})
                 
                 ## define environment
-                if (exists(env) == T) {rm(env, patient)}
+                if (exists(x = "env")) {rm(env, patient)}
                 env = simmer("outpatient_clinic")
                 
                 ## define trajectory and interactions -- how patient is served
@@ -85,7 +84,7 @@ simple_module_server = function(id){
                 
                 ## return monitored resources
                 df = env %>% get_mon_resources()
-                df = df %>% select(time, queue)
+                df = df %>% dplyr::select(time, queue)
                 return(df)
             })
             
