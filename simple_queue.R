@@ -29,7 +29,7 @@ patient = trajectory("patient_path") %>%
 # Add generator of arriving patients
 env %>% 
   add_resource("nurse", 3) %>% 
-  add_resource("doctor", 4) %>% 
+  add_resource("doctor", 2) %>% 
   add_resource("administration", 2) %>% 
   add_generator("patient", patient, function() rnorm(1, 5, 0.5))
 
@@ -41,6 +41,11 @@ library(simmer.plot)
 plot(env,
      what   = "arrivals",
      metric = "waiting_time")
+
+plot(env,
+     what   = "resources",
+     metric = "utilization",
+     c("nurse", "doctor", "administration"))
 
 
 
@@ -68,3 +73,15 @@ plot(x    = arrivals$end_time,
      col  = "blue",
      lwd  = 2,
      frame = F)
+
+
+# Get resources
+# Compute resource utilization
+# Use simmer.plot:::plot.resources.utilization to get to source code
+resources = simmer::get_mon_resources(env)
+resources = 
+  resources %>% 
+  dplyr::group_by(resource, replication) %>% 
+  dplyr::mutate(dt = time - dplyr::lag(time)) %>% 
+  dplyr::mutate(in_use = dt * dplyr::lag(server / capacity)) %>% 
+  dplyr::summarise(utilization = sum(in_use, na.rm = T) / sum(dt, na.rm = T))

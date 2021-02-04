@@ -95,7 +95,7 @@ simple_module_server = function(id){
             })
             
             
-            # TO DO -- fix plot
+            ## plot waiting time
             output$plot1 = renderPlot({
                 plot(x    = vals_df()$end_time,
                      y    = vals_df()$waiting_time,
@@ -108,6 +108,11 @@ simple_module_server = function(id){
                      col  = "blue",
                      lwd  = 2,
                      frame = F)
+            })
+            
+            ## plot resource utilization
+            output$plot2 = renderPlot({
+                
             })
         }
     )
