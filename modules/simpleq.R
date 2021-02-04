@@ -91,6 +91,23 @@ simple_module_server = function(id){
                     dplyr::mutate(waiting_time = flow_time - activity_time)
                 df = df[-1, ]
                 df = df %>% dplyr::select(end_time, waiting_time)
+                
+                ## compute resources utilization
+                resources = simmer::get_mon_resources(env)
+                resources = 
+                    resources %>% 
+                    dplyr::group_by(resource, replication) %>% 
+                    dplyr::mutate(dt = time - dplyr::lag(time)) %>% 
+                    dplyr::mutate(in_use = dt * dplyr::lag(server / capacity)) %>% 
+                    dplyr::summarise(utilization = sum(in_use, na.rm = T) / sum(dt, na.rm = T))
+                resources = resources %>% dplyr::select(-replication)
+                resources = tidyr::spread(resources, 
+                                          key = resource, 
+                                          value = utilization)
+                
+                ## attach resources to arrivals data frame
+                df = merge(df, resources)
+                
                 return(df)
             })
             

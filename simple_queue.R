@@ -85,3 +85,16 @@ resources =
   dplyr::mutate(dt = time - dplyr::lag(time)) %>% 
   dplyr::mutate(in_use = dt * dplyr::lag(server / capacity)) %>% 
   dplyr::summarise(utilization = sum(in_use, na.rm = T) / sum(dt, na.rm = T))
+resources = resources %>% dplyr::select(-replication)
+
+
+# Make tidy resource data frame in order to merge it to arrivals
+resources = tidyr::spread(resources, key = resource, value = utilization)
+
+
+# Merge two data frames
+tmp = merge(arrivals, resources)
+
+
+# Make bar plot of resources utilization
+
