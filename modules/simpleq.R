@@ -82,23 +82,33 @@ simple_module_server = function(id){
                 ## run simulation for 540 mins
                 env %>% run(until = 540)
                 
-                ## return monitored resources
-                df = env %>% get_mon_arrivals()
-                df = df %>% dplyr::select(end_time, start_time)
+                ## compute waiting time for arrivals
+                df = simmer::get_mon_arrivals(env)
+                df = 
+                    df %>% 
+                    dplyr::select(-c(finished, replication)) %>% 
+                    dplyr::mutate(flow_time = end_time - start_time) %>% 
+                    dplyr::mutate(waiting_time = flow_time - activity_time)
+                df = df[-1, ]
+                df = df %>% dplyr::select(end_time, waiting_time)
                 return(df)
             })
             
             
             # TO DO -- fix plot
-            output$plot1 = renderPlot({plot(x = vals_df()$end_time,
-                                            y = vals_df()$start_time,
-                                            main = "Waiting time evolution",
-                                            xlab = "simulation time",
-                                            ylab = "waiting time",
-                                            type = "l",
-                                            col  = "blue",
-                                            lwd  = 2,
-                                            frame = F)})
+            output$plot1 = renderPlot({
+                plot(x    = vals_df()$end_time,
+                     y    = vals_df()$waiting_time,
+                     main = paste("Waiting time. Mean:", 
+                                  round(mean(vals_df()$waiting_time), 1),
+                                  "min"),
+                     xlab = "simulation time, min",
+                     ylab = "waiting time, min",
+                     type = "l",
+                     col  = "blue",
+                     lwd  = 2,
+                     frame = F)
+            })
         }
     )
 }

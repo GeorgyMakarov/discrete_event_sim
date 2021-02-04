@@ -30,35 +30,41 @@ patient = trajectory("patient_path") %>%
 env %>% 
   add_resource("nurse", 3) %>% 
   add_resource("doctor", 4) %>% 
-  add_resource("administration", 1) %>% 
+  add_resource("administration", 2) %>% 
   add_generator("patient", patient, function() rnorm(1, 5, 0.5))
 
 env %>% run(until = 540)
 
 
-# Plot the results
-library(simmer.plot)
-plot(env, 
-     what   = "resources",
-     metric = "usage",
-     c("nurse", "doctor", "administration"),
-     items  = c("server", "queue"))
-
 # Plot metric of interest
+library(simmer.plot)
 plot(env,
      what   = "arrivals",
      metric = "waiting_time")
 
 
-# Plot with basic plotting system
-arrivals = get_mon_arrivals(env)
+
+# Get arrivals
+# Compute flow_time = end_time - start_time
+# Compute waiting_time = flow_time - activity_time
+arrivals = simmer::get_mon_arrivals(env)
+arrivals = 
+  arrivals %>% 
+  dplyr::select(-c(finished, replication)) %>% 
+  dplyr::mutate(flow_time = end_time - start_time) %>% 
+  dplyr::mutate(waiting_time = flow_time - activity_time)
+arrivals = arrivals[-1, ]
+arrivals = arrivals %>% dplyr::select(end_time, waiting_time)
+
+# Plot waiting time evolution using base plot
 plot(x    = arrivals$end_time,
-     y    = arrivals$start_time,
-     main = "Waiting time evolution",
-     xlab = "simulation time",
-     ylab = "waiting time",
+     y    = arrivals$waiting_time,
+     main = paste("Waiting time. Mean:", 
+                  round(mean(arrivals$waiting_time), 1),
+                  "min"),
+     xlab = "simulation time, min",
+     ylab = "waiting time, min",
      type = "l",
      col  = "blue",
      lwd  = 2,
      frame = F)
-
