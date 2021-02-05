@@ -90,11 +90,16 @@ resources = resources %>% dplyr::select(-replication)
 
 # Make tidy resource data frame in order to merge it to arrivals
 resources = tidyr::spread(resources, key = resource, value = utilization)
-
+colnames(resources) = c("admin", "doc", "nurse")
 
 # Merge two data frames
 tmp = merge(arrivals, resources)
 
 
 # Make bar plot of resources utilization
-
+barplot(tmp[, 3:5] %>% 
+          dplyr::summarise_if(is.numeric, mean) %>% 
+          as.matrix(),
+        main    = "Utilization of resources",
+        col     = "dodgerblue1",
+        density = 90)

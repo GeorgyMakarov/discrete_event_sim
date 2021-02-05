@@ -104,6 +104,7 @@ simple_module_server = function(id){
                 resources = tidyr::spread(resources, 
                                           key = resource, 
                                           value = utilization)
+                colnames(resources) = c("admin", "doc", "nurse")
                 
                 ## attach resources to arrivals data frame
                 df = merge(df, resources)
@@ -129,7 +130,12 @@ simple_module_server = function(id){
             
             ## plot resource utilization
             output$plot2 = renderPlot({
-                
+                barplot(vals_df()[, 3:5] %>% 
+                            dplyr::summarise_if(is.numeric, mean) %>% 
+                            as.matrix(),
+                        main    = "Utilization of resources",
+                        col     = "dodgerblue1",
+                        density = 90)
             })
         }
     )
