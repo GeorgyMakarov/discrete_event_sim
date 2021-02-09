@@ -36,6 +36,7 @@ ui = fluidPage(
 
 server = function(input, output, session){
     simple_module_server("simple")
+    saw_module_server("sawmill")
 }
 
 shinyApp(ui = ui, server = server)
