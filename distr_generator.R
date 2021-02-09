@@ -61,3 +61,25 @@ f.dgn = function(rd, nb, s1, s2, mf, ro = FALSE) {
 # f.dpl(3, 100000, 20, 2, 10)                 # plot distribution
 # lskew = f.dgn(3, 100000, 20, 2, 10, T)      # generate distribution
 # hist(lskew, col = "lightgreen", breaks = 5) # plot and compare to f.dpl
+
+
+#' Makes a plot of density
+#' 
+#' @param vector of values
+#' @param name of distribution
+#' @return plot of density
+#' @export
+f.plotd = function(vals, nm){
+    p1 = plot(density(vals),
+              col   = "darkgreen",
+              main  = paste("Median", nm, "time:", round(median(vals), 2)),
+              xlab  = "",
+              ylab  = "density",
+              frame = F)
+    p2 = polygon(density(vals), 
+                 col = rgb(0, 1, 0, alpha = 0.5))
+    p3 = abline(v = median(vals), 
+                col = "red", 
+                lty = 2,
+                lwd = 2)
+}

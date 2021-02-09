@@ -1,5 +1,5 @@
-# setwd("/home/georgy/Документы/GitHub/discrete_event_sim/")
-#setwd("/home/daria/Documents/projects/discrete_event_sim/")
+setwd("/home/georgy/Документы/GitHub/discrete_event_sim/")
+# setwd("/home/daria/Documents/projects/discrete_event_sim/")
 suppressPackageStartupMessages(library(shiny))
 suppressPackageStartupMessages(library(dplyr))
 suppressPackageStartupMessages(library(waiter))
@@ -11,6 +11,7 @@ suppressPackageStartupMessages(library(magrittr))
 
 rm(list = ls())
 source("distr_generator.R")
+source("traj_functions.R")
 source("./modules/simpleq.R")
 source("./modules/sawnmod.R")
 

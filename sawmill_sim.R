@@ -16,10 +16,10 @@ source("distr_generator.R")
 # Define distribution parameters
 # Visualize distributions
 rands   = 3    # random seed
-ncycles = 1e6  # number of observations
+ncycles = 1e5  # number of observations
 multip  = 10   # multiplier which converts distribution to minutes
 
-f.dpl(rands, ncycles, 7, 40, multip)         # process time
+f.dpl(rands, ncycles, 30, 10, multip)         # process time
 f.dpl(rands, ncycles, 10, 10, multip * 60)   # time to failure
 f.dpl(rands, ncycles, 30, 30, multip * 10)   # repair time
 f.dpl(rands, ncycles, 10, 30, multip * 10)   # other jobs
@@ -91,7 +91,8 @@ failure =
 for (i in saws) {
   env %>% 
     add_resource(i, 1, 0, preemptive = TRUE) %>% 
-    add_generator(paste0(i, "_worker"), f.saw_logs(i), at(0), mon = 2)
+    add_generator(paste0(i, "_worker"), 
+                  f.saw_logs(i, ptm = pt_mean, pts = pt_sigm), at(0), mon = 2)
 }
 
 
@@ -117,7 +118,29 @@ res = aggregate(value ~ name, get_mon_attributes(env), max)
 barplot(res$value)
 res
 
+# Get arrivals
+arrivals = simmer::get_mon_arrivals(env)
+arrivals = 
+  arrivals %>% 
+  dplyr::select(-c(finished, replication)) %>% 
+  dplyr::mutate(flow_time = end_time - start_time) %>% 
+  dplyr::mutate(waiting_time = flow_time - activity_time)
+arrivals = arrivals[-1, ]
+arrivals = arrivals %>% dplyr::select(end_time, waiting_time)
+
+
+plot(x    = arrivals$end_time,
+     y    = arrivals$waiting_time,
+     main = paste("Waiting time. Mean:", 
+                  round(mean(arrivals$waiting_time), 1),
+                  "min"),
+     xlab = "simulation time, min",
+     ylab = "waiting time, min",
+     type = "l",
+     col  = "blue",
+     lwd  = 2,
+     frame = F)
+
 
 # to do: visualize simulation output
-# to do: design data product
 # to do: publish description in .Rmd
