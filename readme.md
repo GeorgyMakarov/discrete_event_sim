@@ -89,7 +89,7 @@ Why use *DES*:
 
 [Stat Pharm video]: https://www.youtube.com/watch?v=Qe1NvHJcmZs&t=4s  
 [Simmer docs]: https://r-simmer.org
-[Sawmill DES]: https://rpubs.com/georgy_makarov/647960  
+[Sawmill DES]: https://georgymakarov.shinyapps.io/discrete_event_sim/
 [Linkedin]: https://www.linkedin.com/in/georgy-makarov-11436b42/  
 [Rstudio]: https://rstudio.com
 [Github]: https://github.com  

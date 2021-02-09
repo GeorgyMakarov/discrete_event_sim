@@ -1,4 +1,4 @@
-setwd("/home/georgy/Документы/GitHub/discrete_event_sim/")
+#setwd("/home/georgy/Документы/GitHub/discrete_event_sim/")
 # setwd("/home/daria/Documents/projects/discrete_event_sim/")
 suppressPackageStartupMessages(library(shiny))
 suppressPackageStartupMessages(library(dplyr))

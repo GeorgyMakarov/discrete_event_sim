@@ -5,9 +5,9 @@ account: georgymakarov
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 3587949
-bundleId: 4184641
+bundleId: 4201519
 url: https://georgymakarov.shinyapps.io/discrete_event_sim/
-when: 1612527326.54135
+when: 1612886923.92042
 asMultiple: FALSE
 asStatic: FALSE
-ignoredFiles: readme.md|sawmill_sim.R|simple_queue.R|test_app.R|test_module.R|traj_functions.R
+ignoredFiles: readme.md|sawmill_sim.R|simple_queue.R|test_app.R|test_module.R
