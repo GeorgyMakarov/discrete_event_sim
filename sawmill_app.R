@@ -1,4 +1,4 @@
-#setwd("/home/georgy/Документы/GitHub/discrete_event_sim/")
+# setwd("/home/georgy/Документы/GitHub/discrete_event_sim/")
 # setwd("/home/daria/Documents/projects/discrete_event_sim/")
 suppressPackageStartupMessages(library(shiny))
 suppressPackageStartupMessages(library(dplyr))
@@ -29,7 +29,19 @@ ui = fluidPage(
                  br(),
                  saw_module_ui("sawmill")),
         tabPanel("About",
-                 br())
+                 br(),
+                 column(width = 3),
+                 column(width = 6,
+                        h4("What does this app?"),
+                        p("This project shows how you can use discrete event
+                          simulation to help taking management decisions. There
+                          are two tabs in the app. Simple queue tab shows a 
+                          simple example of queue management in the hospital
+                          by changing the number of admins, nurses and doctors.
+                          Sawmill sim tab simulates the work of a sawmill --
+                          the result of the simulation is a number of logs
+                          sawn during the certain period.")),
+                 column(width = 3))
     )
 
 )

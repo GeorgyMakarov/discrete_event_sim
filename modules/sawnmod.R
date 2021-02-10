@@ -14,6 +14,9 @@ multip  = 10   # multiplier which converts distribution to minutes
 tf_base = 30
 rt_base = 30
 
+waiting_screen = tagList(spin_ellipsis(),
+                         h4("Loading in progress..."))
+
 
 saw_module_ui = function(id){
   ns = NS(id)
@@ -74,6 +77,8 @@ saw_module_server = function(id){
         tf_choice = reactive({input$tofail})
         rt_choice = reactive({input$reptime})
         du_choice = reactive({input$dur})
+        
+        waiter_show(html = waiting_screen, color = "grey")
         
         pt_chosen = reactive({proc_time[pt_choice()]})
         if (pt_chosen() <= 1) {
@@ -162,6 +167,7 @@ saw_module_server = function(id){
         
         df = data.frame(ptd, tfd, rtd)
         df = merge(df, res)
+        waiter_hide()
         return(df)
       })
       

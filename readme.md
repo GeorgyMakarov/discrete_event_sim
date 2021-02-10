@@ -83,6 +83,10 @@ Why use *DES*:
 
 ### Simple queue example
 
+Simple queue process for this process uses an example of outpatient clinic.
+The main entity is a patient. The patient follows a trajectory: nurse ->
+doctor -> administrator. There are **3** types of resources: nurse, doctor,
+administrator. 
 
 <br />
 <br />

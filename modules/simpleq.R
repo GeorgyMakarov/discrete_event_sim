@@ -1,5 +1,7 @@
 # Module demonstrates simple queue simulation
 
+waiting_screen = tagList(spin_ellipsis(),
+                         h4("Loading in progress..."))
 
 # Module UI
 simple_module_ui = function(id){
@@ -54,6 +56,7 @@ simple_module_server = function(id){
                 doct  = reactive({input$doctors})
                 admin = reactive({input$admins})
                 
+                waiter_show(html = waiting_screen, color = "grey")
                 ## define environment
                 if (exists(x = "env")) {rm(env, patient)}
                 env = simmer("outpatient_clinic")
@@ -108,6 +111,7 @@ simple_module_server = function(id){
                 
                 ## attach resources to arrivals data frame
                 df = merge(df, resources)
+                waiter_hide()
                 
                 return(df)
             })
