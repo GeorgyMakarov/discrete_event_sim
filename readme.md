@@ -86,7 +86,26 @@ Why use *DES*:
 Simple queue process for this process uses an example of outpatient clinic.
 The main entity is a patient. The patient follows a trajectory: nurse ->
 doctor -> administrator. There are **3** types of resources: nurse, doctor,
-administrator. 
+administrator.
+
+The nurse makes primary assessment and history taking. This process takes
+*15* minutes in average. The nurse then sends a patient to any of available
+doctors. Next step a doctor consults a patient -- this in average takes *20*
+minutes. After that an administrator finalizes the process by scheduling
+follow up appointment -- the mean time here is *5* minutes. A patient 
+arrives every *5* minutes with a standard deviation of *0.5* minutes. The
+simulation runs for *540* minutes.
+
+Optimization parameters for this simulation are the utilization of resources
+and the waiting time in a queue. The idea is that we do not want low
+resources utilization due to economic reasons, but we do not want a patient
+to wait in the queue too long for the same reasons.
+
+Full code of the sim is here:
+
+- [Simple queue]  
+
+
 
 <br />
 <br />
@@ -98,4 +117,6 @@ administrator.
 [Rstudio]: https://rstudio.com
 [Github]: https://github.com  
 [Git]: https://git-scm.com  
+[Simple queue]: https://github.com/GeorgyMakarov/discrete_event_sim/blob/main/simple_queue.R  
+
 
