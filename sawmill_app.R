@@ -40,7 +40,21 @@ ui = fluidPage(
                           by changing the number of admins, nurses and doctors.
                           Sawmill sim tab simulates the work of a sawmill --
                           the result of the simulation is a number of logs
-                          sawn during the certain period.")),
+                          sawn during the certain period."),
+                        br(),
+                        p("Source code is available at ", 
+                          tags$a(
+                              href = 
+                                  "https://github.com/GeorgyMakarov/discrete_event_sim", 
+                              "GitHub")),
+                        br(),
+                        p("Email: georgy.v.makarov@gmail.com"),
+                        br(),
+                        p("Linkedin", 
+                          tags$a(
+                              href = 
+                                  "https://www.linkedin.com/in/georgy-makarov-11436b42/", 
+                              "Georgy Makarov"))),
                  column(width = 3))
     )
 
