@@ -106,6 +106,48 @@ Full code of the sim is here:
 - [Simple queue]  
 
 
+### Sawmill simulation
+
+Sawmill simulation is loosely based on [Shewhart] individuals control chart.
+The idea is that the process is in controlled state. That means that the
+outcome of the process is pure random. There is no trend or seasonality.
+The aim of the simulation is to predict the output of production.
+
+The main entity is a log. A log follows a trajectory to one of *3* saws,
+which cut the log into boards. The saws fail from time to time. When a saw
+fails a repair man fixes it. The repair man has other jobs to do. When a
+saw fails and a repair man is busy with other job he stops the other job and
+starts a saw repair process. This way a saw repair has higher priority than
+the other job.
+
+There are *4* parameters a user can change in the simulation:  
+
+* process time -- how long does it take a saw to cut a log;  
+* time to fail -- how long does a saw work until it fails;  
+* repair time  -- how long does it take to repair a saw;  
+* sim duration -- how long does the simulation run;  
+
+Parameters from first to third are in minutes. Fourth parameter is in weeks.
+The output is the number of logs cut by *3* saws in total.
+
+Following the idea of control charts it is easy to suggest that process
+means for each of parameters may be at different levels. It is useful to
+run the simulation using different mean combinations, which allows to
+answer `what if?` types of questions, ex.:
+
+- [x] what if saws break often?  
+- [x] what if we do not have necessary parts to repair a saw?  
+- [x] what if we do not have saw operators with good skills?  
+
+Running the simulation helps a user to compare the output of production
+with investments in preventing certain events to happen.
+
+The code of the sim is here:
+
+- [Sawmill sim code]
+
+
+
 
 <br />
 <br />
@@ -118,5 +160,7 @@ Full code of the sim is here:
 [Github]: https://github.com  
 [Git]: https://git-scm.com  
 [Simple queue]: https://github.com/GeorgyMakarov/discrete_event_sim/blob/main/simple_queue.R  
+[Shewhart]: https://en.wikipedia.org/wiki/Shewhart_individuals_control_chart  
+[Sawmill sim code]: https://github.com/GeorgyMakarov/discrete_event_sim/blob/main/sawmill_sim.R  
 
 
